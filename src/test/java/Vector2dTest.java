@@ -1,9 +1,12 @@
-package agh.ics.oop;
+import agh.ics.oop.Vector2d;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class Vector2dTest {
 
     @Test
-    public void equalsTest(Object other){
+    public void equalsTest(Object other1){
         Vector2d first = new Vector2d(1, 2);
         Vector2d second = new Vector2d(2, 1);
         assertFalse(first.equals(second));
@@ -56,8 +59,8 @@ public class Vector2dTest {
     @Test
     public void substractTest(Vector2d other){
         Vector2d first = new Vector2d(1, 2);
-        Vector2d second = new Vector2d(2, 1);
-        assertEquals(new Vector2d(-1, 1), first.substract(second));
+        Vector2d should = new Vector2d(1-other.x, 2-other.y);
+        assertEquals(should, first.substract(other));
 
     }
 

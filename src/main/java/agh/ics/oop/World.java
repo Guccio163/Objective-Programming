@@ -4,9 +4,31 @@ import static java.lang.System.out;
 
 public class World {
     public static void main(String[] args) {
-        out.println("system wystartował");
-        run(args);
-        out.println("system zakończył działanie");
+
+
+        Animal animal = new Animal();
+
+        out.println(animal);
+
+        animal.move(MoveDirection.RIGHT);
+        animal.move(MoveDirection.FORWARD);
+        animal.move(MoveDirection.FORWARD);
+        animal.move(MoveDirection.FORWARD);
+
+        out.println(animal);
+
+        animal.move(MoveDirection.BACKWARD);
+        animal.move(MoveDirection.LEFT);
+        animal.move(MoveDirection.FORWARD);
+        animal.move(MoveDirection.FORWARD);
+
+        out.println(animal);
+
+        MoveDirection[] moves = new OptionsParser().parse(args);
+
+        animal.move1(moves);
+
+        out.println(animal);
     }
 
     public static void run(String[] argums) {
@@ -32,5 +54,3 @@ public class World {
         out.print("Stop \n");
     }
 }
-//timestamp
-//edit to view if desc. will change

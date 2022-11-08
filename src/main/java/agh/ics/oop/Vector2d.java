@@ -74,54 +74,5 @@ public class Vector2d {
         return x == vector.x && y == vector.y;
     }
 
-    public enum MoveDirection {
-        FORWARD,
-        BACKWARD,
-        RIGHT,
-        LEFT;
-    }
-
-    public enum MapDirection {
-        NORTH,
-        SOUTH,
-        WEST,
-        EAST;
-
-        public String toString() {
-            return switch (this) {
-                case NORTH -> "Północ";
-                case SOUTH -> "Południe";
-                case WEST -> "Zachód";
-                case EAST -> "Wschód";
-            };
-        }
-
-        public MapDirection next() {
-            return switch (this) {
-                case NORTH -> SOUTH;
-                case SOUTH -> WEST;
-                case WEST -> EAST;
-                case EAST -> NORTH;
-            };
-        }
-
-        public MapDirection previous() {
-            return switch (this) {
-                case NORTH -> EAST;
-                case SOUTH -> NORTH;
-                case WEST -> SOUTH;
-                case EAST -> WEST;
-            };
-        }
-
-        public Vector2d toUnitVector() {
-            return switch (this) {
-                case NORTH -> new Vector2d(0, 1);
-                case SOUTH -> new Vector2d(1, 0);
-                case WEST -> new Vector2d(0, -1);
-                case EAST -> new Vector2d(-1, 0);
-            };
-        }
-    }
 }
 
