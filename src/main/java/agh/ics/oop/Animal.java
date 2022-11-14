@@ -1,21 +1,31 @@
 package agh.ics.oop;
 
 
+import static java.lang.System.out;
+
 public class Animal {
     private MapDirection Aorientation;
     private Vector2d Aposition;
-    private final Vector2d BottomLeft;
-    private final Vector2d TopRight;
+    private IWorldMap map;
 
-    public Animal() {
+    public Animal(IWorldMap worldmap) {
+        map = worldmap;
         Aorientation = MapDirection.NORTH;
         Aposition = new Vector2d(2, 2);
-        BottomLeft = new Vector2d(0, 0);
-        TopRight = new Vector2d(4, 4);
     }
 
+    public Animal(IWorldMap worldmap, Vector2d start) {
+        map = worldmap;
+        Aposition = start;
+
+        if(!worldmap.place(this)){
+            out.println("Postion" + start.toString() + "%s is already occupied.");
+    }
+}
+
+
     public String toString() {
-        return String.format("position %s, orientation %s", Aposition.toString(), Aorientation.toString());
+        return String.format("position %s, orientation %s", Aposition.toString(), Aorientation.OrientationtoShort());
     }
 
     public boolean isAt(Vector2d position) {
@@ -41,16 +51,10 @@ public class Animal {
 
     private void changePosition(Vector2d movement) {
         Vector2d vector = Aposition.add(movement);
-        if (IsInBoundaries(vector))
+        if (map.canMoveTo(vector))
             Aposition = vector;
     }
 
-    private boolean IsInBoundaries(Vector2d pos) {
-        return  BottomLeft.x <= pos.x &&
-                  pos.x <= TopRight.x &&
-                BottomLeft.y <= pos.y &&
-                pos.y <= TopRight.y;
-    }
 
     // potrzebne do testów
     public Vector2d getPos(){

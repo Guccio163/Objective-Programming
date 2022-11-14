@@ -16,6 +16,15 @@ public enum MapDirection{
             };
         }
 
+    public String OrientationtoShort() {
+        return switch (this) {
+            case NORTH -> "N";
+            case EAST -> "E";
+            case SOUTH -> "S";
+            case WEST -> "W";
+        };
+    }
+
         public MapDirection next() {
             return switch (this) {
                 case NORTH -> EAST;

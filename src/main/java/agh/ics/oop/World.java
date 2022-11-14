@@ -5,30 +5,11 @@ import static java.lang.System.out;
 public class World {
     public static void main(String[] args) {
 
-
-        Animal animal = new Animal();
-
-        out.println(animal);
-
-        animal.move(MoveDirection.RIGHT);
-        animal.move(MoveDirection.FORWARD);
-        animal.move(MoveDirection.FORWARD);
-        animal.move(MoveDirection.FORWARD);
-
-        out.println(animal);
-
-        animal.move(MoveDirection.BACKWARD);
-        animal.move(MoveDirection.LEFT);
-        animal.move(MoveDirection.FORWARD);
-        animal.move(MoveDirection.FORWARD);
-
-        out.println(animal);
-
-        MoveDirection[] moves = new OptionsParser().parse(args);
-
-        animal.move1(moves);
-
-        out.println(animal);
+        MoveDirection[] directions = new OptionsParser().parse(args);
+        IWorldMap map = new RectangularMap(10, 5);
+        Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) };
+        IEngine engine = new SimulationEngine(directions, map, positions);
+        engine.run();
     }
 
     public static void run(String[] argums) {
