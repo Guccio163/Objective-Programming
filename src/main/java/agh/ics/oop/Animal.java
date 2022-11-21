@@ -1,35 +1,30 @@
 package agh.ics.oop;
 
 
-import static java.lang.System.out;
 
-public class Animal {
+
+public class Animal extends AbstractWorldMapElement{
     private MapDirection Aorientation;
-    private Vector2d Aposition;
-    private IWorldMap map;
+    public IWorldMap map1;
 
-    public Animal(IWorldMap worldmap) {
-        map = worldmap;
+    public Animal(Vector2d start, IWorldMap worldmap) {
+        super(start);
+        map1 = worldmap;
         Aorientation = MapDirection.NORTH;
-        Aposition = new Vector2d(2, 2);
+
+        if(worldmap.place(this)==false){
+            throw new IllegalArgumentException("this position is already taken");
+        }
     }
 
-    public Animal(IWorldMap worldmap, Vector2d start) {
-        map = worldmap;
-        Aposition = start;
-
-        if(!worldmap.place(this)){
-            out.println("Postion" + start.toString() + "%s is already occupied.");
-    }
-}
 
 
     public String toString() {
-        return String.format("position %s, orientation %s", Aposition.toString(), Aorientation.OrientationtoShort());
+        return String.format("position %s, orientation %s", pos.toString(), Aorientation.OrientationtoShort());
     }
 
     public boolean isAt(Vector2d position) {
-        return Aposition.equals(position);
+        return pos.equals(position);
     }
 
     public void move1(MoveDirection[] directions) {
@@ -50,15 +45,31 @@ public class Animal {
     }
 
     private void changePosition(Vector2d movement) {
-        Vector2d vector = Aposition.add(movement);
-        if (map.canMoveTo(vector))
-            Aposition = vector;
+        Vector2d vector = pos.add(movement);
+        if (map1.canMoveTo(vector))
+            pos = vector;
+
+
+        if(!map1.canMoveTo(vector))
+        {
+            AbstractWorldMapElement elem = (AbstractWorldMapElement) map1.objectAt(vector);
+
+            if(elem instanceof Grass) {
+                GrassField map = (GrassField) map1;
+                map.removeElem(elem);
+                pos = vector;
+                map.plantGrass(1);
+            }
+            return;
+        }
+
+        pos = vector;
     }
 
 
     // potrzebne do testów
     public Vector2d getPos(){
-        return Aposition;
+        return pos;
     }
 
     public MoveDirection[] toDir(String[] arguments)

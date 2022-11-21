@@ -1,6 +1,8 @@
 package agh.ics.oop;
 
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class Vector2d {
     public final int x;
     public final int y;
@@ -23,7 +25,7 @@ public class Vector2d {
     }
 
     public String toString(int x, int y) {
-        return "(" + x + "," + y + ")";
+        return String.format("(%s,%s)", x, y);
     }
 
     public boolean precedes(Vector2d other) {
@@ -72,6 +74,11 @@ public class Vector2d {
             return false;
         Vector2d vector = (Vector2d) other;
         return x == vector.x && y == vector.y;
+    }
+
+    public static int randomInt(int start, int stop){
+        int a = ThreadLocalRandom.current().nextInt(start, stop + 1);
+        return a;
     }
 
 }
