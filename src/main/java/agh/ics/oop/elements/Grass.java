@@ -1,5 +1,5 @@
-package agh.ics.oop;
-import agh.ics.oop.AbstractWorldMapElement;
+package agh.ics.oop.elements;
+import agh.ics.oop.Vector2d;
 
 public class Grass extends AbstractWorldMapElement{
 

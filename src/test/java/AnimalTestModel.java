@@ -1,6 +1,5 @@
-import agh.ics.oop.Animal;
+import agh.ics.oop.elements.Animal;
 import agh.ics.oop.MapDirection;
-import agh.ics.oop.MoveDirection;
 import agh.ics.oop.Vector2d;
 
 public class AnimalTestModel

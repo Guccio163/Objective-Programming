@@ -1,4 +1,6 @@
-package agh.ics.oop;
+package agh.ics.oop.maps;
+import agh.ics.oop.*;
+
 import static java.lang.System.out;
 
 public class World {

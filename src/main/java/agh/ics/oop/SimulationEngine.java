@@ -1,4 +1,7 @@
 package agh.ics.oop;
+import agh.ics.oop.elements.Animal;
+import agh.ics.oop.maps.IWorldMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +11,7 @@ public class SimulationEngine implements IEngine{
 
     private final MoveDirection[] directions;
     private final IWorldMap worldMap;
-    public final List<Animal> animals = new ArrayList<Animal>();
+    public final List<Animal> animals = new ArrayList<>();
 
     //endregion
 

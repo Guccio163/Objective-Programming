@@ -22,7 +22,9 @@ public class OptionsParser {
 
     private static boolean IsValidDirectionString(String string) {
 
-        return string.equals("f") || string.equals("forward") || string.equals("b") || string.equals("backward")
-                || string.equals("l") || string.equals("left") || string.equals("r") || string.equals("right");
+        return string.equals("f") || string.equals("forward") ||
+                string.equals("b") || string.equals("backward") ||
+                string.equals("l") || string.equals("left") ||
+                string.equals("r") || string.equals("right");
     }
 }

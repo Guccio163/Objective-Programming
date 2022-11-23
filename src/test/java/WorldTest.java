@@ -1,4 +1,5 @@
 import agh.ics.oop.*;
+import agh.ics.oop.maps.IWorldMap;
 import org.junit.jupiter.api.Test;
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertTrue;
