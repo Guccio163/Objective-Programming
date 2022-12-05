@@ -15,14 +15,14 @@ public class SimulationEngine implements IEngine{
 
     //endregion
 
-    public SimulationEngine(MoveDirection[] directions1, IWorldMap worldMap1, Vector2d[] startingPos){
+    public SimulationEngine(MoveDirection[] directions1, IWorldMap worldMap1, Vector2d[] startingPos, List<IPositionChangeObserver> observers){
         directions = directions1;
         worldMap = worldMap1;
 
         for(Vector2d place : startingPos){
 
             try {
-                Animal animal = new Animal(place, worldMap);
+                Animal animal = new Animal(place, worldMap, observers);
                 animals.add(animal);
             }
             catch (IllegalArgumentException e) {
@@ -34,7 +34,7 @@ public class SimulationEngine implements IEngine{
     public void run()
     {
         int i = 0;
-        out.println(worldMap.toString());
+        out.println(worldMap);
         for(MoveDirection direction: directions)
         {
             animals.get(i%animals.size()).move(direction);

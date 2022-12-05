@@ -3,14 +3,20 @@ import agh.ics.oop.*;
 import agh.ics.oop.maps.GrassField;
 import agh.ics.oop.maps.IWorldMap;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal extends AbstractWorldMapElement{
 
     private MapDirection animalOrient;
     public IWorldMap animalMap;
-    public Animal(Vector2d start, IWorldMap map) {
+    private List<IPositionChangeObserver> observers;
+    public Animal(Vector2d start, IWorldMap map, List<IPositionChangeObserver> observers1) {
         super(start);
         animalMap = map;
         animalOrient = MapDirection.NORTH;
+        observers = observers1;
+
 
         if(!map.place(this)){
             throw new IllegalArgumentException("this position is already taken");
@@ -41,13 +47,29 @@ public class Animal extends AbstractWorldMapElement{
             if(obstacle instanceof Grass) {
                 GrassField map = (GrassField) animalMap;
                 map.removeElem(obstacle);
+                positionChanged(vector);
                 pos = vector;
                 map.plantGrass(1);
             }
+
             return;
         }
+        positionChanged(vector);
         pos = vector;
     }
+
+    void addObserver(IPositionChangeObserver observer){
+        observers.add(observer);
+    }
+
+    void removeObserver(IPositionChangeObserver observer){
+        observers.remove(observer);
+    }
+
+    void positionChanged(Vector2d newposition){
+        observers.stream().forEach(observer->observer.positionChanged(this.pos, newposition));
+    }
+
 }
 
 

@@ -4,9 +4,12 @@ import agh.ics.oop.Vector2d;
 public abstract class AbstractWorldMapElement implements IMapElement {
 
     protected Vector2d pos;
-    public AbstractWorldMapElement(Vector2d pos1){ this.pos = pos1; }
 
+    public AbstractWorldMapElement(Vector2d pos1) {
+        this.pos = pos1;
+    }
 
-    public Vector2d getPosition(){ return pos; }
-    public boolean isAt(Vector2d pos1){ return this.getPosition().equals(pos1); }
+    public Vector2d getPosition() {
+        return pos;
+    }
 }

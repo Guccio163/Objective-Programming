@@ -1,11 +1,11 @@
-import agh.ics.oop.MoveDirection;
+import agh.ics.oop.*;
+import agh.ics.oop.elements.Grass;
 import agh.ics.oop.maps.GrassField;
-import agh.ics.oop.IEngine;
 import agh.ics.oop.maps.IWorldMap;
-import agh.ics.oop.OptionsParser;
-import agh.ics.oop.SimulationEngine;
-import agh.ics.oop.Vector2d;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,7 +16,7 @@ public class AbstractWorldTest {
 
         String[] args = {};
         MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(120);
+        GrassField map = new GrassField(120);
         Vector2d[] positions = { };
         Vector2d[] finalPositions = { };
 
@@ -27,7 +27,7 @@ public class AbstractWorldTest {
     public void StackTest() {
         String[] args = {"f","b"};
         MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(10);
+        GrassField map = new GrassField(10);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(2,2), new Vector2d(2,2), new Vector2d(3,4) ,new Vector2d(2,2), new Vector2d(3,4) ,new Vector2d(2,2), new Vector2d(3,4)  };
         Vector2d[] finalPositions = {new Vector2d(2,3), new Vector2d(3,3) };
 
@@ -38,7 +38,7 @@ public class AbstractWorldTest {
     public void StackPlaceTest() {
         String[] args = {"f","f","f","f"};
         MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(9);
+        GrassField map = new GrassField(9);
         Vector2d[] positions = { new Vector2d(0,0), new Vector2d(0,1), new Vector2d(1,0), new Vector2d(1,1)};
         Vector2d[] finalPositions = { new Vector2d(0,0), new Vector2d(0,2), new Vector2d(1,0), new Vector2d(1,2)};
         TestMap(directions, map, positions,finalPositions,13);
@@ -48,7 +48,7 @@ public class AbstractWorldTest {
     public void OverallTest() {
         String[] args = {"f","b","r","l","f","f","r","r","f","f","f","f","f","f","f","f"};
         MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(10);
+        GrassField map = new GrassField(10);
         Vector2d[] positions = { new Vector2d(2,2), new Vector2d(3,4) , new Vector2d(2,2), new Vector2d(3,4) };
         Vector2d[] finalPositions = {new Vector2d(2,-1), new Vector2d(3,7) };
 
@@ -59,15 +59,17 @@ public class AbstractWorldTest {
     public void OverallTest2() {
         String[] args = {"f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","f","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b","b"};
         MoveDirection[] directions = new OptionsParser().parse(args);
-        IWorldMap map = new GrassField(40);
+        GrassField map = new GrassField(40);
         Vector2d[] positions = { new Vector2d(0,0), new Vector2d(2,2) };
         Vector2d[] finalPositions = {new Vector2d(0,1), new Vector2d(2,3) };
 
         TestMap(directions,map,positions,finalPositions,42);
     }
 
-    private void TestMap(MoveDirection[] directions, IWorldMap map, Vector2d[] startingPositions, Vector2d[] finalOccupiedPositions, int final_elements) {
-        IEngine engine = new SimulationEngine(directions, map, startingPositions);
+    private void TestMap(MoveDirection[] directions, GrassField map, Vector2d[] startingPositions, Vector2d[] finalOccupiedPositions, int final_elements) {
+        ArrayList<IPositionChangeObserver> observers = new ArrayList<>();
+        observers.add(map);
+        IEngine engine = new SimulationEngine(directions, map, startingPositions, observers);
         engine.run();
         out.println(map.toString());
 

@@ -1,4 +1,7 @@
 package agh.ics.oop;
+
+import java.util.Objects;
+
 public class Vector2d {
     public final int x;
     public final int y;
@@ -33,9 +36,7 @@ public class Vector2d {
     }
 
     public Vector2d substract(Vector2d other) {
-        return new Vector2d(x - other.x, y - other.y);
-
-    }
+        return new Vector2d(x - other.x, y - other.y);}
 
     public Vector2d upperRight(Vector2d other) {
         return new Vector2d(Math.max(x, other.x), Math.max(y, other.y));
@@ -57,6 +58,9 @@ public class Vector2d {
         Vector2d vector = (Vector2d) other;
         return x == vector.x && y == vector.y;
     }
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(x, y);
+    }
 }
 

@@ -56,7 +56,7 @@ public class GrassField extends AbstractWorldMap {
             // jak zwierze spotka trawe
             if(elem instanceof Animal && prevPositioned instanceof Grass){
                 elementsList.remove(prevPositioned);
-                elementsList.add(elem);
+                elementsList.put(elem.getPosition(), elem);
                 plantGrass(1);
                 return true;
             }
@@ -64,7 +64,7 @@ public class GrassField extends AbstractWorldMap {
             return false;
 
         }
-        elementsList.add(elem);
+        elementsList.put(elem.getPosition(), elem);
         return true;
     }
 
