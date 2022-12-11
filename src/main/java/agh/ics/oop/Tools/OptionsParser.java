@@ -1,4 +1,6 @@
-package agh.ics.oop;
+package agh.ics.oop.Tools;
+
+import agh.ics.oop.MoveDirection;
 
 import java.util.Arrays;
 
@@ -22,9 +24,11 @@ public class OptionsParser {
 
     private static boolean IsValidDirectionString(String string) {
 
-        return string.equals("f") || string.equals("forward") ||
-                string.equals("b") || string.equals("backward") ||
-                string.equals("l") || string.equals("left") ||
-                string.equals("r") || string.equals("right");
+        if(string.equals("f") || string.equals("forward") || string.equals("b") || string.equals("backward") ||
+                string.equals("l") || string.equals("left") || string.equals("r") || string.equals("right") )
+            return true;
+        else
+            throw new IllegalArgumentException(string + " is not legal move specification");
+
     }
 }

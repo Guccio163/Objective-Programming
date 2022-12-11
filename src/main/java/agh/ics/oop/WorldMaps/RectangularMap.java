@@ -1,6 +1,6 @@
-package agh.ics.oop;
+package agh.ics.oop.WorldMaps;
 
-import agh.ics.oop.maps.AbstractWorldMap;
+import agh.ics.oop.Vector2d;
 
 public class RectangularMap extends AbstractWorldMap {
 

@@ -1,11 +1,19 @@
 import agh.ics.oop.*;
-import agh.ics.oop.maps.GrassField;
+import agh.ics.oop.Observers.IPositionChangeObserver;
+import agh.ics.oop.Observers.MapBoundary;
+import agh.ics.oop.Tools.OptionsParser;
+import agh.ics.oop.WorldMaps.GrassField;
+import agh.ics.oop.Tools.IEngine;
+import agh.ics.oop.Tools.SimulationEngine;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.*;
+
+// acutally trzeba zrobić tak żeby mapa printowała się tak duża żeby wszystkie zwierzaki
+// (nawet te poza grassfieldem) były widoczne
 
 
 public class AbstractWorldTest {

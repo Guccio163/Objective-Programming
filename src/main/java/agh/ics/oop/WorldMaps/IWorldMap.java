@@ -1,6 +1,9 @@
-package agh.ics.oop.maps;
+package agh.ics.oop.WorldMaps;
+import agh.ics.oop.Observers.MapBoundary;
 import agh.ics.oop.Vector2d;
-import agh.ics.oop.elements.AbstractWorldMapElement;
+import agh.ics.oop.MapElements.AbstractWorldMapElement;
+
+import java.util.Map;
 
 /**
  * The interface responsible for interacting with the map of the world.
@@ -23,6 +26,7 @@ public interface IWorldMap {
     /** Return an object at a given position.
      * @return Object or null if the position is not occupied.*/
     Object objectAt(Vector2d position);
+
 
     int getElementsSize();
 }

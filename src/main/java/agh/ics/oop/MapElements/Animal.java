@@ -1,7 +1,10 @@
-package agh.ics.oop.elements;
+package agh.ics.oop.MapElements;
 import agh.ics.oop.*;
-import agh.ics.oop.maps.GrassField;
-import agh.ics.oop.maps.IWorldMap;
+import agh.ics.oop.Observers.IPositionChangeObserver;
+import agh.ics.oop.Observers.MapBoundary;
+import agh.ics.oop.WorldMaps.AbstractWorldMap;
+import agh.ics.oop.WorldMaps.GrassField;
+import agh.ics.oop.WorldMaps.IWorldMap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,18 +12,16 @@ import java.util.List;
 public class Animal extends AbstractWorldMapElement{
 
     private MapDirection animalOrient;
-    public IWorldMap animalMap;
-    private List<IPositionChangeObserver> observers;
-    public Animal(Vector2d start, IWorldMap map, List<IPositionChangeObserver> observers1) {
+    public AbstractWorldMap animalMap;
+    private ArrayList<IPositionChangeObserver> observers;
+    public Animal(Vector2d start, AbstractWorldMap map) {
         super(start);
         animalMap = map;
         animalOrient = MapDirection.NORTH;
-        observers = observers1;
+        observers = new ArrayList<>();
+        observers.add(map.boundariesObserver);
 
-
-        if(!map.place(this)){
-            throw new IllegalArgumentException("this position is already taken");
-        }
+        map.place(this);
     }
 
 
@@ -46,6 +47,7 @@ public class Animal extends AbstractWorldMapElement{
 
             if(obstacle instanceof Grass) {
                 GrassField map = (GrassField) animalMap;
+
                 map.removeElem(obstacle);
                 positionChanged(vector);
                 pos = vector;

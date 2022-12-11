@@ -1,4 +1,4 @@
-import agh.ics.oop.elements.Animal;
+import agh.ics.oop.MapElements.Animal;
 import agh.ics.oop.MapDirection;
 import agh.ics.oop.Vector2d;
 

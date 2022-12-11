@@ -1,5 +1,11 @@
 import agh.ics.oop.*;
-import agh.ics.oop.maps.IWorldMap;
+import agh.ics.oop.Observers.IPositionChangeObserver;
+import agh.ics.oop.Tools.OptionsParser;
+import agh.ics.oop.WorldMaps.AbstractWorldMap;
+import agh.ics.oop.WorldMaps.IWorldMap;
+import agh.ics.oop.WorldMaps.RectangularMap;
+import agh.ics.oop.Tools.IEngine;
+import agh.ics.oop.Tools.SimulationEngine;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -75,7 +81,7 @@ public class WorldTest
         assertTrue(TestMap(directions,map,positions,finalPositions, observers));
     }
 
-    private boolean TestMap(MoveDirection[] directions, IWorldMap map, Vector2d[] startingPositions, Vector2d[] finalOccupiedPositions, ArrayList<IPositionChangeObserver> observers) {
+    private boolean TestMap(MoveDirection[] directions, AbstractWorldMap map, Vector2d[] startingPositions, Vector2d[] finalOccupiedPositions, ArrayList<IPositionChangeObserver> observers) {
         IEngine engine = new SimulationEngine(directions, map, startingPositions, observers);
         engine.run();
         out.println(map.toString());

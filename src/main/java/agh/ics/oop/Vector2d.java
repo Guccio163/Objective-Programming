@@ -26,6 +26,21 @@ public class Vector2d {
     public String toString(int x, int y) {
         return String.format("(%s,%s)", x, y);
     }
+    public int compareByX(Vector2d other) {
+        if(this.x != other.x){
+            return this.x-other.x;
+        }
+        else
+            return this.y- other.y;
+    }
+
+    public int compareByY(Vector2d other) {
+        if(this.y != other.y){
+            return this.y-other.y;
+        }
+        else
+            return this.x- other.x;
+    }
 
     public boolean precedes(Vector2d other) { return !( other.x < x || other.y < y); }
 
