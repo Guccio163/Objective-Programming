@@ -26,7 +26,7 @@ public class Animal extends AbstractWorldMapElement{
 
 
     public String toString() {
-        return String.format("%s", animalOrient.orientationToShort());
+        return String.format("(%d, %d)A", this.pos.x, this.pos.y);
     }
 
     public void move(MoveDirection direction) {
@@ -69,13 +69,23 @@ public class Animal extends AbstractWorldMapElement{
     }
 
     void positionChanged(Vector2d newposition){
-        observers.stream().forEach(observer->observer.positionChanged(this.pos, newposition));
+        observers.forEach(observer->observer.positionChanged(this.pos, newposition));
+    }
+
+    public String getImageString()
+    {
+        return "C:\\Users\\wikto\\Desktop\\PO-lab7\\PO-lab7\\src\\main\\java\\agh\\ics\\oop\\resources\\" + switch (this.animalOrient) {
+            case NORTH -> "up";
+            case EAST -> "right";
+            case WEST -> "left";
+            case SOUTH -> "down";
+        } + ".png";
     }
 
 }
 
 
-    // Odpowiedź na pytanie nr 10
-    // Robimy tablicę dwuwymiarową true/false która oddaje obraz naszego świata: gdzie stoją umieszczone już zwierzęta
-    // (true jak jakieś pole jest zajęte i false jak nie), następnie przekazujemy ją w konstruktorze nowego Animala oraz
-    // move; jak ktoś chce zrobić tam gdzie już jakieś stoi albo ruszyć na pole gdzie już jakieś stoi to nie pozwalamy
+// Odpowiedź na pytanie nr 10
+// Robimy tablicę dwuwymiarową true/false która oddaje obraz naszego świata: gdzie stoją umieszczone już zwierzęta
+// (true jak jakieś pole jest zajęte i false jak nie), następnie przekazujemy ją w konstruktorze nowego Animala oraz
+// move; jak ktoś chce zrobić tam gdzie już jakieś stoi albo ruszyć na pole gdzie już jakieś stoi to nie pozwalamy

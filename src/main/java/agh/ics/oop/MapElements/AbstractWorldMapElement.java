@@ -12,4 +12,9 @@ public abstract class AbstractWorldMapElement implements IMapElement {
     public Vector2d getPosition() {
         return pos;
     }
+
+    public String getImageString()
+    {
+        return "";
+    }
 }

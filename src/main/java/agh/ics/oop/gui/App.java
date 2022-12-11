@@ -14,13 +14,15 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 import javafx.stage.Stage;
+
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 public class App extends Application {
 
     int stageHeight;
     int stageWidth;
-    int squareSize = 15;
+    int squareSize = 50;
     ArrayList<IPositionChangeObserver> boundaries;
     GrassField map;
     IEngine engine;
@@ -86,8 +88,16 @@ public class App extends Application {
         // adding elements to the Grid
         map.elementsList.forEach((coords, element) -> {
             Label label = new Label(element.toString());
+
+            GuiElementBox guiElementBox = null;
+            try {
+                guiElementBox = new GuiElementBox(element);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+
             GridPane.setHalignment( label, HPos.CENTER );
-            grid.add(label, coords.x+1, rowCount-coords.y, 1, 1);
+            grid.add(guiElementBox.container, coords.x+1, rowCount-coords.y,1,1);
         });
 
 

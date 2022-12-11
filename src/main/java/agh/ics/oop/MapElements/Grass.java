@@ -7,8 +7,11 @@ public class Grass extends AbstractWorldMapElement{
         super(pos1);
     }
 
-    public String toString(){
-        return "*";
+    public String toString(){ return String.format("(%d, %d)G", this.pos.x, this.pos.y);
     }
 
+    public String getImageString()
+    {
+        return "C:\\Users\\wikto\\Desktop\\PO-lab7\\PO-lab7\\src\\main\\java\\agh\\ics\\oop\\resources\\grass.png";
+    }
 }
