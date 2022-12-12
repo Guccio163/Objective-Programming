@@ -12,6 +12,6 @@ public class Grass extends AbstractWorldMapElement{
 
     public String getImageString()
     {
-        return "C:\\Users\\wikto\\Desktop\\PO-lab7\\PO-lab7\\src\\main\\java\\agh\\ics\\oop\\resources\\grass.png";
+        return "src/main/resources/grass.png";
     }
 }

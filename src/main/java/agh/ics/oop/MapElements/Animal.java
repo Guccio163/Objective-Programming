@@ -74,7 +74,7 @@ public class Animal extends AbstractWorldMapElement{
 
     public String getImageString()
     {
-        return "C:\\Users\\wikto\\Desktop\\PO-lab7\\PO-lab7\\src\\main\\java\\agh\\ics\\oop\\resources\\" + switch (this.animalOrient) {
+        return "src/main/resources/" + switch (this.animalOrient) {
             case NORTH -> "up";
             case EAST -> "right";
             case WEST -> "left";
